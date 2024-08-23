@@ -45,6 +45,6 @@ func main() {
 	// Find a reasonably efficient solution
 	solution := solver.SolveLoadSet(loadset, debug)
 	for _, s := range solution {
-		println(s)
+		_, _ = fmt.Printf("[%s]\n", s)
 	}
 }
