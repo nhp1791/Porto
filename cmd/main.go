@@ -20,6 +20,9 @@ func main() {
 	var filepath string
 	flag.StringVar(&filepath, "f", "", "The full path of the file containing the problem to be solved")
 
+	var debug bool
+	flag.BoolVar(&debug, "d", false, "Turns on debug printing")
+
 	flag.Parse()
 
 	if filepath == "" {
@@ -34,8 +37,13 @@ func main() {
 		os.Exit(1)
 	}
 
+	if debug {
+		println()
+		_, _ = fmt.Printf("Number of loads requested: %d\n", loadset.Size())
+	}
+
 	// Find a reasonably efficient solution
-	solution := solver.SolveLoadSet(loadset)
+	solution := solver.SolveLoadSet(loadset, debug)
 	for _, s := range solution {
 		println(s)
 	}

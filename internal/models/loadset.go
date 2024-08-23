@@ -64,3 +64,10 @@ func (l *LoadSet) IsFinished() bool {
 	}
 	return true
 }
+
+// Size returns the total number of loads to be solved for.
+func (l *LoadSet) Size() int {
+	// Because the origin in added to the LoadMap, but is
+	// not an actual load, one must subtracted from the LoadMap size
+	return len(l.LoadMap) - 1
+}

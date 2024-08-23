@@ -11,7 +11,7 @@ func TestSolution(t *testing.T) {
 		t.Fatal("could not read problem file")
 	}
 
-	solution := SolveLoadSet(loadset)
+	solution := SolveLoadSet(loadset, false)
 
 	actualSolution := []string{
 		"88,36,13,176,101,183,147,71,15,28,173,163,168,38,153,86,130,17,184,121,115,1,44,62,125,18,145,104,2,19,133,165,185,177,200,45,193,81,198,92,102,85,152,14,109",

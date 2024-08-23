@@ -95,6 +95,10 @@ func (d *Driver) FindNearestPickup(choice int) bool {
 	return true
 }
 
+func (d *Driver) getCompletedLoadList() []*Load {
+	return d.completedLoads
+}
+
 func (d *Driver) completedLoadString() string {
 	c := make([]string, len(d.completedLoads))
 	for i, l := range d.completedLoads {
