@@ -6,6 +6,7 @@
 package solver
 
 import (
+	"fmt"
 	"math"
 	"sched/internal/models"
 )
@@ -18,7 +19,7 @@ import (
 // 4
 //
 // where each line represents the route of an individual driver
-func SolveLoadSet(loadset *models.LoadSet) []string {
+func SolveLoadSet(loadset *models.LoadSet, debug bool) []string {
 	var minCost uint64 = math.MaxUint64
 	var bestStable *models.DriverStable
 
@@ -67,9 +68,16 @@ func SolveLoadSet(loadset *models.LoadSet) []string {
 	// If no solution was found, say so.
 	if bestStable == nil {
 		println("No solution could be found")
+		return []string{}
+	}
+
+	if debug {
+		size, uniqueSize := bestStable.Size()
+		_, _ = fmt.Printf("Size of solution set: %d\n", size)
+		_, _ = fmt.Printf("Number of unique solutions in solution set: %d\n", uniqueSize)
+		println()
 	}
 
 	// Print the loads for each driver
 	return bestStable.Solution()
-
 }

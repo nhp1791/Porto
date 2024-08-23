@@ -48,6 +48,19 @@ func (s *DriverStable) Solution() []string {
 	for i, d := range s.dispatchedDrivers {
 		loadStrings[i] = d.completedLoadString()
 	}
-
 	return loadStrings
+}
+
+// Size returns the total number of loads in a solution, along with the total number of
+// unique loads.  These should always be the same.
+func (s *DriverStable) Size() (total int, unique int) {
+	set := make(map[int]bool)
+	for _, d := range s.dispatchedDrivers {
+		driverSet := d.getCompletedLoadList()
+		total += len(driverSet)
+		for _, l := range driverSet {
+			set[l.number] = true
+		}
+	}
+	return total, len(set)
 }
